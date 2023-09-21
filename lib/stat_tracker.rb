@@ -25,7 +25,7 @@ class StatTracker
       game = Game.new(row[:game_id],
                       row[:season],
                       row[:away_goals],
-                      row[:home_goals], 
+                      row[:home_goals]
                       )
       @games << game
     end
@@ -106,6 +106,7 @@ class StatTracker
     @game_teams.each do |game|
       if game.hoa == 'away' && game.result == 'WIN'
         games_won += 1
+        #binding.pry
       end
     end
     percentage = (games_won.to_f / number_of_games.to_f * 100).round(2)
@@ -130,4 +131,22 @@ class StatTracker
     def game_ids
       @game_ids = @game_teams.map{|game| game.game_id}.uniq
     end
+
+    # def winningest_coach	
+    #  """ Name of the Coach with the best
+    #    win percentage for the season"""
+    # end
+    def season_percentage_win
+    #find the total number of games 
+      number_of_games = game_ids.length
+      total_games_won = 0
+      binding.pry
+      @game_teams.each do |game|
+        if game.hoa == 'home' || game.hoa == 'away' && game.result == 'WIN'
+          total_games_won += 1 
+        end
+      end 
+        total_percentage = (games_won.to_f / number_of_games.to_f * 100).round(2)
+    end
 end
+
