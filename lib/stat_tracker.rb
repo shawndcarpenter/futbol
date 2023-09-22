@@ -1,7 +1,7 @@
 require './spec/spec_helper'
 
 class StatTracker
-  attr_reader :all_data, :games, :game_teams, :teams, :game_ids
+  attr_reader :all_data, :games, :game_teams, :teams
   
   def initialize(all_data)
     @all_data = all_data
