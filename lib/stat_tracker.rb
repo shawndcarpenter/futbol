@@ -8,7 +8,6 @@ class StatTracker
     @games = []
     @game_teams = []
     @teams = []
-    @game_ids = []
     create_games
     create_game_teams
     game_ids
@@ -185,7 +184,7 @@ def worst_coach(season)
   season_comparer = season[0..3]
    losing_games_in_season = @game_teams.find_all do |game_team| 
     game_id_comparer = game_team.game_id[0..3]
-    game_team.result == "LOSS" && season_comparer == game_id_comparer
+    game_team.result == "WIN" && season_comparer == game_id_comparer
    end
    coach_count = {}
    losing_games_in_season.each do |game|
@@ -195,7 +194,7 @@ def worst_coach(season)
       coach_count[game.head_coach] += 1
     end
   end 
-  coach_count.max_by{|k,v| v}.first
+  coach_count.min_by{|k,v| v}.first
 end
 
 def most_accurate_team(season)
@@ -253,10 +252,6 @@ def fewest_tackles(season)
 end
 
 ##HELPER METHODS
-  ## Creates an array of game_ids, acts as helper method
-  def game_ids
-    @game_ids = @game_teams.map{|game| game.game_id}.uniq
-  end
   
   ## Finds the max average score by game id and returns team name
   def max(team_goals)
@@ -325,7 +320,7 @@ end
 ##HELPER METHODS
     ## Creates an array of game_ids, acts as helper method
     def game_ids
-      @game_ids = @game_teams.map{|game| game.game_id}.uniq
+      @game_teams.map{|game| game.game_id}.uniq
     end
 
     ## Creates game objects from the CSV file
