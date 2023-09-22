@@ -1,7 +1,7 @@
 require './spec/spec_helper'
 
 class StatTracker
-  attr_reader :all_data, :games, :game_teams, :teams, :game_ids
+  attr_reader :all_data, :games, :game_teams, :teams
   
   def initialize(all_data)
     @all_data = all_data
@@ -10,7 +10,6 @@ class StatTracker
     @teams = []
     create_games
     create_game_teams
-    game_ids
     create_teams
   end
 
@@ -23,12 +22,10 @@ class StatTracker
     StatTracker.new(all_data)
   end
 
-  ## Returns highest total score of added scores of that game (INTEGER)
   def highest_total_score
     games_hash.values.max
   end
 
-  ## Returns lowest total score of added scores of that game (INTEGER)
   def lowest_total_score
     games_hash.values.min
   end
@@ -80,7 +77,7 @@ class StatTracker
   end
 
    ## Returns average goals per game across ALL seasons rounded to nearest 100th (FLOAT)
-   def average_goals_per_game
+  def average_goals_per_game
     game_count = game_ids.count.to_f
     average_goals_per_game = games_hash.values.sum.to_f/game_count
     average_goals_per_game.round(2)
@@ -90,8 +87,6 @@ class StatTracker
   def average_goals_by_season
     average_goals_by_season = total_scores_by_season.map { |season, total_scores| [season, (total_scores.to_f/count_of_games_by_season[season].to_f).round(2)]}.to_h
   end
-  
-## LEAGUE SCORING
 
   def count_of_teams
     @teams.count
@@ -161,8 +156,6 @@ class StatTracker
     end
     min_team_name(team_goals)
   end
-  
-## SEASON STATISTICS
 
   def winningest_coach(season)
     season_comparer = season[0..3]
@@ -251,8 +244,6 @@ class StatTracker
     end
     worst_team.team_name
   end
-
-##HELPER METHODS
   
   ## Finds the max average score by game id and returns team name
   def max_team_name(team_goals)
@@ -318,13 +309,9 @@ class StatTracker
     team_avgs
   end
 
-##HELPER METHODS
-    ## Creates an array of game_ids, acts as helper method
-    def game_ids
-      @game_teams.map{|game| game.game_id}.uniq
-    end
-
-    ## Creates game objects from the CSV file
+  def game_ids
+    @game_teams.map{|game| game.game_id}.uniq
+  end
 
   def create_teams
     @all_data[:teams].each do |row|
@@ -376,7 +363,7 @@ class StatTracker
     games_hash
   end
 
-  ##Returns a hash of season as key and total scores of all games in that season for value
+  # Returns a hash of season as key and total scores of all games in that season for value
   def total_scores_by_season
     total_scores_by_season = {}
     @games.each do |game|
