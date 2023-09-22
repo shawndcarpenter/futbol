@@ -164,92 +164,92 @@ class StatTracker
 ## SEASON STATISTICS
 
   def winningest_coach(season)
-  season_comparer = season[0..3]
+    season_comparer = season[0..3]
     winning_games_in_season = @game_teams.find_all do |game_team| 
-    game_id_comparer = game_team.game_id[0..3]
-    game_team.result == "WIN" && season_comparer == game_id_comparer
-   end
-   coach_count = {}
-   winning_games_in_season.each do |game|
-    if coach_count[game.head_coach].nil? 
-      coach_count[game.head_coach] = 1
-    else 
-      coach_count[game.head_coach] += 1
+      game_id_comparer = game_team.game_id[0..3]
+      game_team.result == "WIN" && season_comparer == game_id_comparer
     end
-  end 
-  coach_count.max_by{|k,v| v}.first
-end
+    coach_count = {}
+    winning_games_in_season.each do |game|
+      if coach_count[game.head_coach].nil? 
+        coach_count[game.head_coach] = 1
+      else 
+        coach_count[game.head_coach] += 1
+      end
+    end 
+    coach_count.max_by{|k,v| v}.first
+  end
 
-def worst_coach(season) 
-  season_comparer = season[0..3]
-   losing_games_in_season = @game_teams.find_all do |game_team| 
-    game_id_comparer = game_team.game_id[0..3]
-    game_team.result == "WIN" && season_comparer == game_id_comparer
-   end
-   coach_count = {}
-   losing_games_in_season.each do |game|
-    if coach_count[game.head_coach].nil? 
-      coach_count[game.head_coach] = 1
-    else 
-      coach_count[game.head_coach] += 1
+  def worst_coach(season) 
+    season_comparer = season[0..3]
+    losing_games_in_season = @game_teams.find_all do |game_team| 
+      game_id_comparer = game_team.game_id[0..3]
+      game_team.result == "WIN" && season_comparer == game_id_comparer
     end
-  end 
-  coach_count.min_by{|k,v| v}.first
-end
-
-def most_accurate_team(season)
-  season_comparer = season[0..3]
-  games_in_season = @game_teams.find_all do |game_team| 
-    game_id_comparer = game_team.game_id[0..3]
-    season_comparer == game_id_comparer
+    coach_count = {}
+    losing_games_in_season.each do |game|
+      if coach_count[game.head_coach].nil? 
+        coach_count[game.head_coach] = 1
+      else 
+        coach_count[game.head_coach] += 1
+      end
+    end 
+    coach_count.min_by{|k,v| v}.first
   end
-  team_comparison = {}
-  games_in_season.each do |game|
-    if team_comparison[game.team_id].nil?
-      team_comparison[game.team_id]= [(game.goals/game.shots).round(2)]
-    else
-      team_comparison[game.team_id]<<(game.goals/game.shots).round(2)
+
+  def most_accurate_team(season)
+    season_comparer = season[0..3]
+    games_in_season = @game_teams.find_all do |game_team| 
+      game_id_comparer = game_team.game_id[0..3]
+      season_comparer == game_id_comparer
     end
-  end
-  team_comparison = team_comparison.map{|team_id, ratio_array| [team_id, (ratio_array.sum/ratio_array.length).round(2)]}.to_h
-  most_accurate_teamid = team_comparison.sort_by{|k,v| -v}.first.first
-  most_accurate_team_name = @teams.find{|team| team.team_id == most_accurate_teamid}.team_name
-end
-
-def least_accurate_team(season)
-  season_comparer = season[0..3]
-  games_in_season = @game_teams.find_all do |game_team| 
-    game_id_comparer = game_team.game_id[0..3]
-    season_comparer == game_id_comparer
-  end
-  team_comparison = {}
-  games_in_season.each do |game|
-    if team_comparison[game.team_id].nil?
-      team_comparison[game.team_id]= [(game.goals/game.shots).round(2)]
-    else
-      team_comparison[game.team_id]<<(game.goals/game.shots).round(2)
+    team_comparison = {}
+    games_in_season.each do |game|
+      if team_comparison[game.team_id].nil?
+        team_comparison[game.team_id]= [(game.goals/game.shots).round(2)]
+      else
+        team_comparison[game.team_id]<<(game.goals/game.shots).round(2)
+      end
     end
+    team_comparison = team_comparison.map{|team_id, ratio_array| [team_id, (ratio_array.sum/ratio_array.length).round(2)]}.to_h
+    most_accurate_teamid = team_comparison.sort_by{|k,v| -v}.first.first
+    most_accurate_team_name = @teams.find{|team| team.team_id == most_accurate_teamid}.team_name
   end
-  team_comparison = team_comparison.map{|team_id, ratio_array| [team_id, (ratio_array.sum/ratio_array.length).round(2)]}.to_h
-  least_accurate_teamid = team_comparison.sort_by{|k,v| v}.first.first
-  least_accurate_team_name = @teams.find{|team| team.team_id == least_accurate_teamid}.team_name
-end
 
-def most_tackles(season)
-  max_team_id = team_season_tackles(season).max_by { |team_id, tackles| tackles }[0]
-  best_team = @teams.find do |team|
-    team.team_id == max_team_id
+  def least_accurate_team(season)
+    season_comparer = season[0..3]
+    games_in_season = @game_teams.find_all do |game_team| 
+      game_id_comparer = game_team.game_id[0..3]
+      season_comparer == game_id_comparer
+    end
+    team_comparison = {}
+    games_in_season.each do |game|
+      if team_comparison[game.team_id].nil?
+        team_comparison[game.team_id]= [(game.goals/game.shots).round(2)]
+      else
+        team_comparison[game.team_id]<<(game.goals/game.shots).round(2)
+      end
+    end
+    team_comparison = team_comparison.map{|team_id, ratio_array| [team_id, (ratio_array.sum/ratio_array.length).round(2)]}.to_h
+    least_accurate_teamid = team_comparison.sort_by{|k,v| v}.first.first
+    least_accurate_team_name = @teams.find{|team| team.team_id == least_accurate_teamid}.team_name
   end
-  best_team.team_name
-end
 
-def fewest_tackles(season)
-  min_team_id = team_season_tackles(season).min_by { |team_id, tackles| tackles }[0]
-  worst_team = @teams.find do |team|
-    team.team_id == min_team_id
+  def most_tackles(season)
+    max_team_id = team_season_tackles(season).max_by { |team_id, tackles| tackles }[0]
+    best_team = @teams.find do |team|
+      team.team_id == max_team_id
+    end
+    best_team.team_name
   end
-  worst_team.team_name
-end
+
+  def fewest_tackles(season)
+    min_team_id = team_season_tackles(season).min_by { |team_id, tackles| tackles }[0]
+    worst_team = @teams.find do |team|
+      team.team_id == min_team_id
+    end
+    worst_team.team_name
+  end
 
 ##HELPER METHODS
   
@@ -307,14 +307,14 @@ end
   end
 
   def avg_team_goals_league
-      team_avgs = Hash.new
-      game_team_ids.each do |team|
-        team_games = team_games_league_total[team]
-        team_goals = team_goals_league_total[team]
-        goal_stat = (team_goals.to_f / team_games.to_f).round(2)
-        team_avgs[team] = goal_stat
-      end
-      team_avgs
+    team_avgs = Hash.new
+    game_team_ids.each do |team|
+      team_games = team_games_league_total[team]
+      team_goals = team_goals_league_total[team]
+      goal_stat = (team_goals.to_f / team_games.to_f).round(2)
+      team_avgs[team] = goal_stat
+    end
+    team_avgs
   end
 
 ##HELPER METHODS
