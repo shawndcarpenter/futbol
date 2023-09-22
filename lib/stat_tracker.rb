@@ -146,6 +146,7 @@ class StatTracker
         team_goals[game_team.team_id] << game_team.goals.to_f
       end
     end
+   # binding.pry
     min_team_name(team_goals)
   end
 
@@ -270,7 +271,7 @@ class StatTracker
     team_goals.each do |team_goal, value|
       team_averages[team_goal] = (value.sum / value.length.to_f)
     end
-    min = team_averages.min_by{ |k,v| v }
+    min = team_averages.min_by { |k,v| v }
     lowest_team = @teams.find { |team| team.team_id == min.first }
     lowest_team.team_name
   end
