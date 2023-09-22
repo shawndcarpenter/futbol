@@ -22,8 +22,14 @@ RSpec.describe StatTracker do
     it 'has attributes' do
       expect(@stats.all_data.values.all? { |file| File.exist?(file) } ).to be true
     end
+
+    it 'makes using #create_teams, #create_games, and #create_game_teams' do
+      expect(@stats.instance_variable_get(:@teams)).to all be_a Team
+      expect(@stats.instance_variable_get(:@games)).to all be_a Game
+      expect(@stats.instance_variable_get(:@game_teams)).to all be_a GameTeam
+    end
   end
-  
+
   describe '::from_csv' do
     it 'Gets data and makes instance' do
       expect(StatTracker.from_csv(@locations)).to be_instance_of(StatTracker)
@@ -45,6 +51,11 @@ RSpec.describe StatTracker do
                                                       "20162017"=>36, 
                                                       "20172018"=>35})
       expect(@stats.count_of_games_by_season.class).to be Hash
+    end
+
+    it 'returns list of game_ids' do
+      expect(@stats.game_ids[0]).to eq("2012030221")
+      expect(@stats.game_ids.all? { |id| id.class == String}).to eq(true)
     end
 
     it 'returns percentage of games home team won' do
