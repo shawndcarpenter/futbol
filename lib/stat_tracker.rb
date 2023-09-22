@@ -10,7 +10,6 @@ class StatTracker
     @teams = []
     create_games
     create_game_teams
-    game_ids
     create_teams
   end
 
@@ -80,7 +79,7 @@ class StatTracker
   end
 
    ## Returns average goals per game across ALL seasons rounded to nearest 100th (FLOAT)
-   def average_goals_per_game
+  def average_goals_per_game
     game_count = game_ids.count.to_f
     average_goals_per_game = games_hash.values.sum.to_f/game_count
     average_goals_per_game.round(2)
@@ -318,10 +317,10 @@ class StatTracker
   end
 
 ##HELPER METHODS
-    ## Creates an array of game_ids, acts as helper method
-    def game_ids
-      @game_teams.map{|game| game.game_id}.uniq
-    end
+    ## Crgeates an array of game_ids, acts as helper method
+  def game_ids
+    @game_teams.map{|game| game.game_id}.uniq
+  end
 
     ## Creates game objects from the CSV file
 
