@@ -22,12 +22,10 @@ class StatTracker
     StatTracker.new(all_data)
   end
 
-  ## Returns highest total score of added scores of that game (INTEGER)
   def highest_total_score
     games_hash.values.max
   end
 
-  ## Returns lowest total score of added scores of that game (INTEGER)
   def lowest_total_score
     games_hash.values.min
   end
@@ -89,8 +87,6 @@ class StatTracker
   def average_goals_by_season
     average_goals_by_season = total_scores_by_season.map { |season, total_scores| [season, (total_scores.to_f/count_of_games_by_season[season].to_f).round(2)]}.to_h
   end
-  
-## LEAGUE SCORING
 
   def count_of_teams
     @teams.count
@@ -159,8 +155,6 @@ class StatTracker
     end
     min_team_name(team_goals)
   end
-  
-## SEASON STATISTICS
 
   def winningest_coach(season)
     season_comparer = season[0..3]
@@ -249,8 +243,6 @@ class StatTracker
     end
     worst_team.team_name
   end
-
-##HELPER METHODS
   
   ## Finds the max average score by game id and returns team name
   def max(team_goals)
@@ -316,13 +308,9 @@ class StatTracker
     team_avgs
   end
 
-##HELPER METHODS
-    ## Crgeates an array of game_ids, acts as helper method
   def game_ids
     @game_teams.map{|game| game.game_id}.uniq
   end
-
-    ## Creates game objects from the CSV file
 
   def create_teams
     @all_data[:teams].each do |row|
@@ -374,7 +362,7 @@ class StatTracker
     games_hash
   end
 
-  ##Returns a hash of season as key and total scores of all games in that season for value
+  # Returns a hash of season as key and total scores of all games in that season for value
   def total_scores_by_season
     total_scores_by_season = {}
     @games.each do |game|
