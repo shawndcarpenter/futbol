@@ -122,7 +122,7 @@ class StatTracker
         team_goals[game_team.team_id] << game_team.goals.to_f
       end
     end
-    max(team_goals)
+    max_team_name(team_goals)
   end
 
   def highest_scoring_home_team
@@ -134,7 +134,7 @@ class StatTracker
         team_goals[game_team.team_id] << game_team.goals.to_f
       end
     end
-    max(team_goals)
+    max_team_name(team_goals)
   end
   
   def lowest_scoring_visitor
@@ -146,6 +146,7 @@ class StatTracker
         team_goals[game_team.team_id] << game_team.goals.to_f
       end
     end
+   # binding.pry
     min_team_name(team_goals)
   end
 
@@ -254,13 +255,13 @@ class StatTracker
 ##HELPER METHODS
   
   ## Finds the max average score by game id and returns team name
-  def max(team_goals)
+  def max_team_name(team_goals)
     team_averages = {}
     team_goals.each do |team_goal, value|
       team_averages[team_goal] = (value.sum / value.length.to_f)
     end
-    max = team_averages.max_by{|k,v| v}
-    highest_team = @teams.find { |team| team.team_id == max.first}
+    max = team_averages.max_by { |k,v| v }
+    highest_team = @teams.find { |team| team.team_id == max.first }
     highest_team.team_name
   end
 
@@ -270,8 +271,8 @@ class StatTracker
     team_goals.each do |team_goal, value|
       team_averages[team_goal] = (value.sum / value.length.to_f)
     end
-    min = team_averages.min_by{|k,v| v}
-    lowest_team = @teams.find { |team| team.team_id == min.first}
+    min = team_averages.min_by { |k,v| v }
+    lowest_team = @teams.find { |team| team.team_id == min.first }
     lowest_team.team_name
   end
 

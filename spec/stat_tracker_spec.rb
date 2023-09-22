@@ -72,11 +72,10 @@ RSpec.describe StatTracker do
       expect(@stats.average_goals_by_season).to eq({"20122013"=>3.68, "20152016"=>4.24, "20162017"=>4.53, "20172018"=>4.40})
       expect(@stats.average_goals_by_season.class).to be Hash
     end
-
   end
 
   describe '#count_of_teams' do
-    it 'gets total  number of teams in league' do
+    it 'gets total number of teams in league' do
       expect(@stats.count_of_teams).to eq(32)
     end
   end
@@ -111,6 +110,14 @@ RSpec.describe StatTracker do
   end
 
   describe '#highest_scoring and #lowest_scoring' do
+    it 'finds the name of team with lowest average score' do
+      expect(@stats.max_team_name({"6"=>[3.0], "3"=>[1.0], "5"=>[0.0],})).to eq("FC Dallas")
+    end
+
+    it 'finds the name of team with lowest average score' do
+      expect(@stats.min_team_name({"3"=>[2.0],"6"=>[3.0],"5"=>[1.0],})).to eq("Sporting Kansas City")
+    end
+
     it 'returns name of team with highest average when away' do
       expect(@stats.highest_scoring_visitor.class).to be String
       expect(@stats.highest_scoring_visitor).to eq('New York Red Bulls')
@@ -133,14 +140,14 @@ RSpec.describe StatTracker do
   end
   
   describe "#winningest_coach and #worst_coach" do
-   it 'returns name of the Coach with the best win percentage for the season' do 
+    it 'returns name of the Coach with the best win percentage for the season' do 
       expect(@stats.winningest_coach('20122013').class).to be String
       expect(@stats.winningest_coach('20122013')).to eq("Claude Julien")
-   end
+    end
 
-   it 'returns name of the Coach with the worst win percentage for the season' do
-     expect(@stats.worst_coach('20122013')).to eq("Dan Bylsma")
-   end
+    it 'returns name of the Coach with the worst win percentage for the season' do
+      expect(@stats.worst_coach('20122013')).to eq("Dan Bylsma")
+    end
   end
 
   describe '#most_accurate_team and #least_accurate_team' do
@@ -155,7 +162,7 @@ RSpec.describe StatTracker do
     end
   end
   
-   describe '#most_tackles, #fewest_tackles' do
+  describe '#most_tackles, #fewest_tackles' do
     it 'list of teams who played in a season' do
       expect(@stats.teams_ids_season).to eq(['3', '6', '5', '28', '19', '8', '9'])
     end
