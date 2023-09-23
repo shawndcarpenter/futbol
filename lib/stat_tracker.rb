@@ -198,7 +198,7 @@ class StatTracker
       if team_comparison[game.team_id].nil?
         team_comparison[game.team_id]= [(game.goals/game.shots).round(2)]
       else
-        team_comparison[game.team_id]<<(game.goals/game.shots).round(2)
+        team_comparison[game.team_id] << (game.goals/game.shots).round(2)
       end
     end
     team_comparison = team_comparison.map{|team_id, ratio_array| [team_id, (ratio_array.sum/ratio_array.length).round(2)]}.to_h
@@ -252,7 +252,7 @@ class StatTracker
   def teams_ids_season
     team_ids = @game_teams.map { |team| team.team_id }.uniq
   end
-  
+
   ## Finds the max average score by game id and returns team name
   def max_team_name(team_goals)
     team_averages = {}

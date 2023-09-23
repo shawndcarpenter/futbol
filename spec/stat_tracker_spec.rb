@@ -51,16 +51,16 @@ RSpec.describe StatTracker do
     end
 
     it 'returns a hash of season names as keys and counts of games as values' do
+      expect(@stats.count_of_games_by_season.class).to be Hash
       expect(@stats.count_of_games_by_season).to eq({ "20122013"=>19, 
                                                       "20152016"=>33, 
                                                       "20162017"=>36, 
                                                       "20172018"=>35})
-      expect(@stats.count_of_games_by_season.class).to be Hash
     end
 
     it 'returns list of game_ids' do
       expect(@stats.game_ids[0]).to eq("2012030221")
-      expect(@stats.game_ids.all? { |id| id.class == String}).to eq(true)
+      expect(@stats.game_ids.all? { |id| id.class == String }).to eq(true)
     end
 
     it 'returns percentage of games home team won' do
@@ -80,8 +80,8 @@ RSpec.describe StatTracker do
     end
 
     it 'returns average number of goals scored in a game across all seasons' do
-      expect(@stats.average_goals_per_game).to eq(3.91)
       expect(@stats.average_goals_per_game.class).to be Float
+      expect(@stats.average_goals_per_game).to eq(3.91)
     end
 
     it 'gets list of total scores by a season' do
