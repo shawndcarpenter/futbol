@@ -202,8 +202,8 @@ class StatTracker
       end
     end
     team_comparison = team_comparison.map{|team_id, ratio_array| [team_id, (ratio_array.sum/ratio_array.length).round(2)]}.to_h
-    most_accurate_teamid = team_comparison.sort_by{ |k,v| -v }.first.first
-    most_accurate_team_name = @teams.find{ |team| team.team_id == most_accurate_teamid }.team_name
+    most_accurate_teamid = team_comparison.sort_by { |k,v| -v }.first.first
+    most_accurate_team_name = @teams.find { |team| team.team_id == most_accurate_teamid }.team_name
   end
 
   def least_accurate_team(season)
@@ -220,24 +220,20 @@ class StatTracker
         team_comparison[game.team_id] << (game.goals/game.shots).round(2)
       end
     end
-    team_comparison = team_comparison.map{ |team_id, ratio_array| [team_id, (ratio_array.sum/ratio_array.length).round(2)] }.to_h
-    least_accurate_teamid = team_comparison.sort_by{|k,v| v}.first.first
-    least_accurate_team_name = @teams.find{ |team| team.team_id == least_accurate_teamid }.team_name
+    team_comparison = team_comparison.map { |team_id, ratio_array| [team_id, (ratio_array.sum/ratio_array.length).round(2)] }.to_h
+    least_accurate_teamid = team_comparison.sort_by {|k,v| v}.first.first
+    least_accurate_team_name = @teams.find { |team| team.team_id == least_accurate_teamid }.team_name
   end
 
   def most_tackles(season)
     max_team_id = team_season_tackles(season).max_by { |team_id, tackles| tackles }[0]
-    best_team = @teams.find do |team|
-      team.team_id == max_team_id
-    end
+    best_team = @teams.find { |team| team.team_id == max_team_id }
     best_team.team_name
   end
 
   def fewest_tackles(season)
     min_team_id = team_season_tackles(season).min_by { |team_id, tackles| tackles }[0]
-    worst_team = @teams.find do |team|
-      team.team_id == min_team_id
-    end
+    worst_team = @teams.find { |team| team.team_id == min_team_id }
     worst_team.team_name
   end
 
