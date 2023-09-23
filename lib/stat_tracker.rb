@@ -245,10 +245,6 @@ class StatTracker
     @game_teams.map{ |game| game.game_id }.uniq
   end
 
-  def teams_ids_season
-    team_ids = @game_teams.map { |team| team.team_id }.uniq
-  end
-
   ## Finds the max average score by game id and returns team name
   def max_team_name(team_goals)
     team_averages = {}
@@ -370,7 +366,7 @@ class StatTracker
 
   def team_season_tackles(season)
     season_comparer = season[0..3]
-    teams_ids_season.reduce(Hash.new(0)) do |team_tackles, team_id|
+    game_team_ids.reduce(Hash.new(0)) do |team_tackles, team_id|
       @game_teams.each do |game|
         game_id_comparer = game.game_id[0..3]
         if team_id == game.team_id && season_comparer == game_id_comparer
