@@ -167,7 +167,7 @@ class StatTracker
         coach_count[game.head_coach] += 1
       end
     end 
-    coach_count.max_by{|k,v| v}.first
+    coach_count.max_by{ |k,v| v }.first
   end
 
   def worst_coach(season) 
@@ -184,7 +184,7 @@ class StatTracker
         coach_count[game.head_coach] += 1
       end
     end 
-    coach_count.min_by{|k,v| v}.first
+    coach_count.min_by{ |k,v| v }.first
   end
 
   def most_accurate_team(season)
@@ -202,8 +202,8 @@ class StatTracker
       end
     end
     team_comparison = team_comparison.map{|team_id, ratio_array| [team_id, (ratio_array.sum/ratio_array.length).round(2)]}.to_h
-    most_accurate_teamid = team_comparison.sort_by{|k,v| -v}.first.first
-    most_accurate_team_name = @teams.find{|team| team.team_id == most_accurate_teamid}.team_name
+    most_accurate_teamid = team_comparison.sort_by{ |k,v| -v }.first.first
+    most_accurate_team_name = @teams.find{ |team| team.team_id == most_accurate_teamid }.team_name
   end
 
   def least_accurate_team(season)
