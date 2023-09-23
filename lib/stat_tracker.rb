@@ -368,7 +368,7 @@ class StatTracker
       if total_scores_by_season[game.season].nil? # Added [1] to continue method with adjustment to games_list
         total_scores_by_season[game.season] = 0
       end
-      total_scores_by_season[game.season] += (game.away_goals+game.home_goals)
+      total_scores_by_season[game.season] += (game.away_goals + game.home_goals)
     end
     total_scores_by_season
   end
