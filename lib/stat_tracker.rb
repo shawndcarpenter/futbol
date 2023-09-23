@@ -138,7 +138,6 @@ class StatTracker
         team_goals[game_team.team_id] << game_team.goals.to_f
       end
     end
-
     min_team_name(team_goals)
   end
 
@@ -221,9 +220,9 @@ class StatTracker
         team_comparison[game.team_id] << (game.goals/game.shots).round(2)
       end
     end
-    team_comparison = team_comparison.map{|team_id, ratio_array| [team_id, (ratio_array.sum/ratio_array.length).round(2)]}.to_h
+    team_comparison = team_comparison.map{ |team_id, ratio_array| [team_id, (ratio_array.sum/ratio_array.length).round(2)] }.to_h
     least_accurate_teamid = team_comparison.sort_by{|k,v| v}.first.first
-    least_accurate_team_name = @teams.find{|team| team.team_id == least_accurate_teamid}.team_name
+    least_accurate_team_name = @teams.find{ |team| team.team_id == least_accurate_teamid }.team_name
   end
 
   def most_tackles(season)
@@ -240,6 +239,18 @@ class StatTracker
       team.team_id == min_team_id
     end
     worst_team.team_name
+  end
+
+  def game_team_ids
+    team_ids = @game_teams.map { |game| game.team_id }.uniq
+  end
+  
+  def game_ids
+    @game_teams.map{ |game| game.game_id }.uniq
+  end
+
+  def teams_ids_season
+    team_ids = @game_teams.map { |team| team.team_id }.uniq
   end
   
   ## Finds the max average score by game id and returns team name
@@ -262,13 +273,6 @@ class StatTracker
     min = team_averages.min_by { |k,v| v }
     lowest_team = @teams.find { |team| team.team_id == min.first }
     lowest_team.team_name
-  end
-
-  def game_team_ids
-    team_ids = @game_teams.map do |game|
-      game.team_id
-    end
-    team_ids.uniq
   end
   
   def team_games_league_total
@@ -304,10 +308,6 @@ class StatTracker
       team_avgs[team] = goal_stat
     end
     team_avgs
-  end
-
-  def game_ids
-    @game_teams.map{|game| game.game_id}.uniq
   end
 
   def create_teams
@@ -370,10 +370,6 @@ class StatTracker
       total_scores_by_season[game.season] += (game.away_goals + game.home_goals)
     end
     total_scores_by_season
-  end
-
-  def teams_ids_season
-    team_ids = @game_teams.map { |team| team.team_id }.uniq
   end
 
   def team_season_tackles(season)
