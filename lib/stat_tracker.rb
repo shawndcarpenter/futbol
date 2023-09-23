@@ -353,10 +353,10 @@ class StatTracker
   def games_hash
     games_hash = {}
     game_ids.each do |game_id|
-      games_hash[game_id]=0
+      games_hash[game_id] = 0
     end
     @game_teams.each do |game|
-      games_hash[game.game_id]+=game.goals.to_i
+      games_hash[game.game_id] += game.goals.to_i
     end
     games_hash
   end
