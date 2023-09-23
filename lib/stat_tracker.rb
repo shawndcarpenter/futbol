@@ -221,7 +221,7 @@ class StatTracker
       end
     end
     team_comparison = team_comparison.map { |team_id, ratio_array| [team_id, (ratio_array.sum/ratio_array.length).round(2)] }.to_h
-    least_accurate_teamid = team_comparison.sort_by {|k,v| v}.first.first
+    least_accurate_teamid = team_comparison.sort_by { |k,v| v }.first.first
     least_accurate_team_name = @teams.find { |team| team.team_id == least_accurate_teamid }.team_name
   end
 
