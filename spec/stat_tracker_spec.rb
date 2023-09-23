@@ -37,6 +37,11 @@ RSpec.describe StatTracker do
   end
   
   describe '#GameStatistics' do
+    it 'list of gets goals for a game' do
+      expect(@stats.total_goals_by_game_id.class).to be Hash
+      expect(@stats.total_goals_by_game_id['2012030222']).to eq(5)
+    end
+    
     it 'gets highest total score' do
       expect(@stats.highest_total_score).to eq(7)
     end
