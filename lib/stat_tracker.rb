@@ -23,11 +23,11 @@ class StatTracker
   end
 
   def highest_total_score
-    games_hash.values.max
+    total_goals_by_game_id.values.max
   end
 
   def lowest_total_score
-    games_hash.values.min
+    total_goals_by_game_id.values.min
   end
 
   def percentage_home_wins
@@ -77,7 +77,7 @@ class StatTracker
 
   def average_goals_per_game
     game_count = game_ids.count.to_f
-    average_goals_per_game = games_hash.values.sum.to_f/game_count
+    average_goals_per_game = total_goals_by_game_id.values.sum.to_f / game_count
     average_goals_per_game.round(2)
   end
 
@@ -139,7 +139,7 @@ class StatTracker
         team_goals[game_team.team_id] << game_team.goals.to_f
       end
     end
-   # binding.pry
+
     min_team_name(team_goals)
   end
 
@@ -350,15 +350,15 @@ class StatTracker
   end
 
   ##Returns a hash of game ID for key and total goals as value
-  def games_hash
-    games_hash = {}
+  def total_goals_by_game_id
+    total_goals_by_game_id = {}
     game_ids.each do |game_id|
-      games_hash[game_id] = 0
+      total_goals_by_game_id[game_id] = 0
     end
     @game_teams.each do |game|
-      games_hash[game.game_id] += game.goals.to_i
+      total_goals_by_game_id[game.game_id] += game.goals.to_i
     end
-    games_hash
+    total_goals_by_game_id
   end
 
   # Returns a hash of season as key and total scores of all games in that season for value
