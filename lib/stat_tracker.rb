@@ -63,20 +63,18 @@ class StatTracker
     percentage = (games_tied.to_f / number_of_games.to_f).round(2)
   end
 
-  ## A hash with season names (e.g. 20122013) as keys and counts of games as values
   def count_of_games_by_season
   count_games = {}
-   @games.each do |game|
-    if count_games[game.season].nil? # Added [1] to continue method with adjustment to games_list
-      count_games[game.season] = 1
-    else
-      count_games[game.season] +=1
+    @games.each do |game|
+      if count_games[game.season].nil? # Added [1] to continue method with adjustment to games_list
+        count_games[game.season] = 1
+      else
+        count_games[game.season] += 1
+      end
     end
-   end
-   count_games
+    count_games
   end
 
-   ## Returns average goals per game across ALL seasons rounded to nearest 100th (FLOAT)
   def average_goals_per_game
     game_count = game_ids.count.to_f
     average_goals_per_game = games_hash.values.sum.to_f/game_count
@@ -219,9 +217,9 @@ class StatTracker
     team_comparison = {}
     games_in_season.each do |game|
       if team_comparison[game.team_id].nil?
-        team_comparison[game.team_id]= [(game.goals/game.shots).round(2)]
+        team_comparison[game.team_id] = [(game.goals/game.shots).round(2)]
       else
-        team_comparison[game.team_id]<<(game.goals/game.shots).round(2)
+        team_comparison[game.team_id] << (game.goals/game.shots).round(2)
       end
     end
     team_comparison = team_comparison.map{|team_id, ratio_array| [team_id, (ratio_array.sum/ratio_array.length).round(2)]}.to_h
@@ -303,7 +301,7 @@ class StatTracker
     game_team_ids.each do |team|
       team_games = team_games_league_total[team]
       team_goals = team_goals_league_total[team]
-      goal_stat = (team_goals.to_f / team_games.to_f).round(2)
+      goal_stat = (team_goals.to_f / team_games).round(2)
       team_avgs[team] = goal_stat
     end
     team_avgs
@@ -371,8 +369,8 @@ class StatTracker
         total_scores_by_season[game.season] = 0
       end
       total_scores_by_season[game.season] += (game.away_goals+game.home_goals)
-     end
-     total_scores_by_season
+    end
+    total_scores_by_season
   end
 
   def teams_ids_season
