@@ -37,6 +37,11 @@ RSpec.describe StatTracker do
   end
   
   describe '#GameStatistics' do
+    it 'list of gets goals for a game' do
+      expect(@stats.total_goals_by_game_id.class).to be Hash
+      expect(@stats.total_goals_by_game_id['2012030222']).to eq(5)
+    end
+    
     it 'gets highest total score' do
       expect(@stats.highest_total_score).to eq(7)
     end
@@ -46,16 +51,16 @@ RSpec.describe StatTracker do
     end
 
     it 'returns a hash of season names as keys and counts of games as values' do
+      expect(@stats.count_of_games_by_season.class).to be Hash
       expect(@stats.count_of_games_by_season).to eq({ "20122013"=>19, 
                                                       "20152016"=>33, 
                                                       "20162017"=>36, 
                                                       "20172018"=>35})
-      expect(@stats.count_of_games_by_season.class).to be Hash
     end
 
     it 'returns list of game_ids' do
       expect(@stats.game_ids[0]).to eq("2012030221")
-      expect(@stats.game_ids.all? { |id| id.class == String}).to eq(true)
+      expect(@stats.game_ids.all? { |id| id.class == String }).to eq(true)
     end
 
     it 'returns percentage of games home team won' do
@@ -75,13 +80,18 @@ RSpec.describe StatTracker do
     end
 
     it 'returns average number of goals scored in a game across all seasons' do
-      expect(@stats.average_goals_per_game).to eq(3.91)
       expect(@stats.average_goals_per_game.class).to be Float
+      expect(@stats.average_goals_per_game).to eq(3.91)
+    end
+
+    it 'gets list of total scores by a season' do
+      expect(@stats.total_scores_by_season.class).to be Hash
+      expect(@stats.total_scores_by_season).to eq({"20122013"=>70, "20152016"=>140, "20162017"=>163, "20172018"=>154})
     end
 
     it 'returns average number of goals scored in a game' do
-      expect(@stats.average_goals_by_season).to eq({"20122013"=>3.68, "20152016"=>4.24, "20162017"=>4.53, "20172018"=>4.40})
       expect(@stats.average_goals_by_season.class).to be Hash
+      expect(@stats.average_goals_by_season).to eq({"20122013"=>3.68, "20152016"=>4.24, "20162017"=>4.53, "20172018"=>4.40})
     end
   end
 
@@ -186,11 +196,13 @@ RSpec.describe StatTracker do
     it '#gets team with most tackles in a season' do
       expect(@stats.most_tackles('20122013').class).to be String
       expect(@stats.most_tackles('20122013')).to eq('FC Dallas')
+      expect(@stats.most_tackles('20132014')).to eq('FC Dallas')
     end
 
     it '#gets team with least tackles in a season' do
       expect(@stats.fewest_tackles('20122013').class).to be String
       expect(@stats.fewest_tackles('20122013')).to eq ('Sporting Kansas City')
+      expect(@stats.fewest_tackles('20132014')).to eq ('New York Red Bulls')
     end
   end
 end
