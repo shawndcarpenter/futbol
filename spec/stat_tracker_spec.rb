@@ -185,7 +185,7 @@ RSpec.describe StatTracker do
   
   describe '#most_tackles, #fewest_tackles' do
     it 'list of teams who played in a season' do
-      expect(@stats.teams_ids_season).to eq(['3', '6', '5', '28', '19', '8', '9'])
+      expect(@stats.game_team_ids).to eq(['3', '6', '5', '28', '19', '8', '9'])
     end
 
     it 'list of tackles for teams' do
