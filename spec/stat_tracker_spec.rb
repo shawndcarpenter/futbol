@@ -196,11 +196,13 @@ RSpec.describe StatTracker do
     it '#gets team with most tackles in a season' do
       expect(@stats.most_tackles('20122013').class).to be String
       expect(@stats.most_tackles('20122013')).to eq('FC Dallas')
+      expect(@stats.most_tackles('20132014')).to eq('FC Dallas')
     end
 
     it '#gets team with least tackles in a season' do
       expect(@stats.fewest_tackles('20122013').class).to be String
       expect(@stats.fewest_tackles('20122013')).to eq ('Sporting Kansas City')
+      expect(@stats.fewest_tackles('20132014')).to eq ('New York Red Bulls')
     end
   end
 end
