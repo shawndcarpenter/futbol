@@ -32,3 +32,16 @@ In regards to reorganization/refactoring, we plan to do this in Iteration III on
 | Nurudeen Sulaimon | [nurudeen-sulaimon](https://www.linkedin.com/in/nurudeen-sulaimon/) | [nurudeensulaimon](https://github.com/nurudeensulaimon) |
 | Samuel Tran | [sam-t-tran](https://www.linkedin.com/in/sam-t-tran/)| [Sykogst](https://github.com/Sykogst)|
 | Shawn Carpenter | [shawndcarpenter](https://www.linkedin.com/in/shawndcarpenter/)| [shawndcarpenter](https://github.com/shawndcarpenter)
+
+### Retro 
+
+#### The name of and links (if applicable) to any tools you used for retro
+We used a jamboard linked [here](https://jamboard.google.com/d/1TCwAkKw8gxmGOFdx1d5ohr8mQqimW108Bt0X-p4zpoo/viewer?f=4). We found that it was the easiest way for us to add all of our thoughts individually with some level of anonymity if necessary.
+#### Top 3 things that went well during your project
+- We reviewed each other’s code, so we’d have a decent idea as to how others approached methods, which helped us understand our own methods.
+- We for the most part stuck to our plans and got almost everything done by EOD Friday.
+- We returned to the DTR and discussed changes to be implemented based on what was and wasn’t working for communication.
+#### Top 3 things your team would do differently next time
+- Set up due dates on Google Calendar. We realized about halfway through the week that not all of the work was getting done with self-assignments on Trello alone. We had discussed deadlines on call, but these were not adhered to (and group members had no reference to check on this matter). 
+- Create a flow chart depicting how all the methods work with each other. We realized that there was probably a fair amount of overlap in method functionality.
+- Do project check-in times on a Slack thread similar to what the instructors set up in Mod 0. We were checking in and calling on Slack daily, but without a structure and physical messages, it was not seen as necessary and some concerns were not voiced in the moment.
