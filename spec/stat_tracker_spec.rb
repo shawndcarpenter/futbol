@@ -167,7 +167,7 @@ RSpec.describe StatTracker do
     end
 
     it 'returns name of the Coach with the worst win percentage for the season' do
-      expect(@stats.worst_coach('20122013')).to eq("Dan Bylsma")
+      expect(@stats.worst_coach('20152016')).to eq("Ken Hitchcock")
     end
   end
 
