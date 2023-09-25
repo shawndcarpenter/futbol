@@ -140,7 +140,7 @@ RSpec.describe StatTracker do
     end
 
     it 'finds the name of a team from a team id' do
-      expect(@stats.name("1")).to eq("Atlanta United")
+      expect(@stats.team_name("1")).to eq("Atlanta United")
     end
 
     it 'returns name of team with highest average when away' do
