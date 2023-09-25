@@ -14,7 +14,7 @@
       <img src="./assets/0.12.3/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" class="hide">
-      <div class="timestamp">Generated <abbr class="timeago" title="2023-09-22T19:02:59-06:00">2023-09-22T19:02:59-06:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2023-09-25T10:03:28-06:00">2023-09-25T10:03:28-06:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
@@ -71,7 +71,7 @@
       <tbody>
         
           <tr class="t-file">
-            <td class="strong t-file__name"><a href="#d7d8869ebc8977655f499819c43a96b597dcdce7" class="src_link" title="spec/game_team_spec.rb">spec/game_team_spec.rb</a></td>
+            <td class="strong t-file__name"><a href="#3437f9feb59122af4afa5dc46012b91bee7d2bb2" class="src_link" title="spec/game_team_spec.rb">spec/game_team_spec.rb</a></td>
             <td class="green strong cell--number t-file__coverage">100.00 %</td>
             <td class="cell--number">32</td>
             <td class="cell--number">24</td>
@@ -82,7 +82,7 @@
           </tr>
         
           <tr class="t-file">
-            <td class="strong t-file__name"><a href="#9ce95dd7ded14dac16df509b09480d60e8f37731" class="src_link" title="spec/stat_tracker_spec.rb">spec/stat_tracker_spec.rb</a></td>
+            <td class="strong t-file__name"><a href="#e30834bab49e4dd985b83d673f910a1e4a6d33fb" class="src_link" title="spec/stat_tracker_spec.rb">spec/stat_tracker_spec.rb</a></td>
             <td class="green strong cell--number t-file__coverage">100.00 %</td>
             <td class="cell--number">208</td>
             <td class="cell--number">114</td>
@@ -93,7 +93,7 @@
           </tr>
         
           <tr class="t-file">
-            <td class="strong t-file__name"><a href="#661c08e809f76704d8fbae22428536dbabb13acc" class="src_link" title="spec/team_spec.rb">spec/team_spec.rb</a></td>
+            <td class="strong t-file__name"><a href="#1f23b5c5dba024b80d186b8cf9ac7db9c6cbbb44" class="src_link" title="spec/team_spec.rb">spec/team_spec.rb</a></td>
             <td class="green strong cell--number t-file__coverage">100.00 %</td>
             <td class="cell--number">20</td>
             <td class="cell--number">12</td>
@@ -120,7 +120,7 @@
 
       <div class="source_files">
       
-        <div class="source_table" id="d7d8869ebc8977655f499819c43a96b597dcdce7">
+        <div class="source_table" id="3437f9feb59122af4afa5dc46012b91bee7d2bb2">
   <div class="header">
     <h3>spec/game_team_spec.rb</h3>
     <h4>
@@ -503,7 +503,7 @@
 </div>
 
       
-        <div class="source_table" id="9ce95dd7ded14dac16df509b09480d60e8f37731">
+        <div class="source_table" id="e30834bab49e4dd985b83d673f910a1e4a6d33fb">
   <div class="header">
     <h3>spec/stat_tracker_spec.rb</h3>
     <h4>
@@ -2010,7 +2010,7 @@
 
             
 
-            <code class="ruby">      expect(@stats.max_team_name({&quot;6&quot;=&gt;[3.0], &quot;3&quot;=&gt;[1.0], &quot;5&quot;=&gt;[0.0],})).to eq(&quot;FC Dallas&quot;)</code>
+            <code class="ruby">      expect(@stats.max_team({&quot;6&quot;=&gt;[3.0], &quot;3&quot;=&gt;[1.0], &quot;5&quot;=&gt;[0.0],})).to eq(&quot;FC Dallas&quot;)</code>
           </li>
         </div>
       
@@ -2054,7 +2054,7 @@
 
             
 
-            <code class="ruby">      expect(@stats.min_team_name({&quot;3&quot;=&gt;[2.0],&quot;6&quot;=&gt;[3.0],&quot;5&quot;=&gt;[1.0],})).to eq(&quot;Sporting Kansas City&quot;)</code>
+            <code class="ruby">      expect(@stats.min_team({&quot;3&quot;=&gt;[2.0],&quot;6&quot;=&gt;[3.0],&quot;5&quot;=&gt;[1.0],})).to eq(&quot;Sporting Kansas City&quot;)</code>
           </li>
         </div>
       
@@ -2593,7 +2593,7 @@
 
             
 
-            <code class="ruby">      expect(@stats.teams_ids_season).to eq([&#39;3&#39;, &#39;6&#39;, &#39;5&#39;, &#39;28&#39;, &#39;19&#39;, &#39;8&#39;, &#39;9&#39;])</code>
+            <code class="ruby">      expect(@stats.game_team_ids).to eq([&#39;3&#39;, &#39;6&#39;, &#39;5&#39;, &#39;28&#39;, &#39;19&#39;, &#39;8&#39;, &#39;9&#39;])</code>
           </li>
         </div>
       
@@ -2822,7 +2822,7 @@
 </div>
 
       
-        <div class="source_table" id="661c08e809f76704d8fbae22428536dbabb13acc">
+        <div class="source_table" id="1f23b5c5dba024b80d186b8cf9ac7db9c6cbbb44">
   <div class="header">
     <h3>spec/team_spec.rb</h3>
     <h4>

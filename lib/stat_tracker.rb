@@ -114,7 +114,7 @@ class StatTracker
         team_goals[game_team.team_id] << game_team.goals.to_f
       end
     end
-    max_team_name(team_goals)
+    max_team(team_goals)
   end
 
   def highest_scoring_home_team
@@ -126,7 +126,7 @@ class StatTracker
         team_goals[game_team.team_id] << game_team.goals.to_f
       end
     end
-    max_team_name(team_goals)
+    max_team(team_goals)
   end
   
   def lowest_scoring_visitor
@@ -138,7 +138,7 @@ class StatTracker
         team_goals[game_team.team_id] << game_team.goals.to_f
       end
     end
-    min_team_name(team_goals)
+    min_team(team_goals)
   end
 
   def lowest_scoring_home_team
@@ -150,7 +150,7 @@ class StatTracker
         team_goals[game_team.team_id] << game_team.goals.to_f
       end
     end
-    min_team_name(team_goals)
+    min_team(team_goals)
   end
 
   def winningest_coach(season)
@@ -245,26 +245,30 @@ class StatTracker
     @game_teams.map{ |game| game.game_id }.uniq
   end
 
-  ## Finds the max average score by game id and returns team name
-  def max_team_name(team_goals)
+  ## Finds the max average score by game id
+  def max_team(team_goals)
     team_averages = {}
     team_goals.each do |team_goal, value|
       team_averages[team_goal] = (value.sum / value.length.to_f)
     end
     max = team_averages.max_by { |k,v| v }
-    highest_team = @teams.find { |team| team.team_id == max.first }
-    highest_team.team_name
+    name(max)
   end
 
-  ## Finds the min average score by game id and returns team name
-  def min_team_name(team_goals)
+  ## Finds the min average score by game id
+  def min_team(team_goals)
     team_averages = {}
     team_goals.each do |team_goal, value|
       team_averages[team_goal] = (value.sum / value.length.to_f)
     end
     min = team_averages.min_by { |k,v| v }
-    lowest_team = @teams.find { |team| team.team_id == min.first }
-    lowest_team.team_name
+    name(min)
+  end
+
+  ## Takes in a team id and returns team name
+  def name(found_id)
+    found_team = @teams.find { |team| team.team_id == found_id.first }
+    found_team.team_name
   end
   
   def team_games_league_total
