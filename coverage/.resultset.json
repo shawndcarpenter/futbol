@@ -1,7 +1,7 @@
 {
   "RSpec": {
     "coverage": {
-      "/Users/samueltran/turing/1mod/projects/futbol/spec/game_team_spec.rb": {
+      "/Users/shawncarpenter/turing/mod1/projects/futbol/spec/game_team_spec.rb": {
         "lines": [
           1,
           null,
@@ -37,22 +37,22 @@
           null
         ]
       },
-      "/Users/samueltran/turing/1mod/projects/futbol/spec/stat_tracker_spec.rb": {
+      "/Users/shawncarpenter/turing/mod1/projects/futbol/spec/stat_tracker_spec.rb": {
         "lines": [
           1,
           null,
           1,
           1,
           null,
-          37,
-          37,
-          37,
-          37,
+          38,
+          38,
+          38,
+          38,
           null,
           null,
           null,
           null,
-          37,
+          38,
           null,
           null,
           1,
@@ -182,6 +182,10 @@
           null,
           1,
           1,
+          null,
+          null,
+          1,
+          1,
           1,
           null,
           null,
@@ -249,7 +253,7 @@
           null
         ]
       },
-      "/Users/samueltran/turing/1mod/projects/futbol/spec/team_spec.rb": {
+      "/Users/shawncarpenter/turing/mod1/projects/futbol/spec/team_spec.rb": {
         "lines": [
           1,
           null,
@@ -274,6 +278,6 @@
         ]
       }
     },
-    "timestamp": 1695430979
+    "timestamp": 1695658597
   }
 }

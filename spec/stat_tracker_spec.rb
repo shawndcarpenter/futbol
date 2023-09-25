@@ -132,11 +132,15 @@ RSpec.describe StatTracker do
 
   describe '#highest_scoring and #lowest_scoring' do
     it 'finds the name of team with lowest average score' do
-      expect(@stats.max_team_name({"6"=>[3.0], "3"=>[1.0], "5"=>[0.0],})).to eq("FC Dallas")
+      expect(@stats.max_team({"6"=>[3.0], "3"=>[1.0], "5"=>[0.0],})).to eq("FC Dallas")
     end
 
     it 'finds the name of team with lowest average score' do
-      expect(@stats.min_team_name({"3"=>[2.0],"6"=>[3.0],"5"=>[1.0],})).to eq("Sporting Kansas City")
+      expect(@stats.min_team({"3"=>[2.0],"6"=>[3.0],"5"=>[1.0],})).to eq("Sporting Kansas City")
+    end
+
+    it 'finds the name of a team from a team id' do
+      expect(@stats.team_name("1")).to eq("Atlanta United")
     end
 
     it 'returns name of team with highest average when away' do
