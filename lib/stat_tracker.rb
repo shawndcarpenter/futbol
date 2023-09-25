@@ -245,14 +245,20 @@ class StatTracker
     @game_teams.map{ |game| game.game_id }.uniq
   end
 
+  ## Takes in a team id and returns team name
+  def name(found_id)
+    found_team = @teams.find { |team| team.team_id == found_id }
+    found_team.team_name
+  end
+
   ## Finds the max average score by game id
   def max_team(team_goals)
     team_averages = {}
     team_goals.each do |team_goal, value|
       team_averages[team_goal] = (value.sum / value.length.to_f)
     end
-    max = team_averages.max_by { |k,v| v }
-    name(max)
+    max_id = team_averages.max_by { |k,v| v }.first
+    name(max_id)
   end
 
   ## Finds the min average score by game id
@@ -261,14 +267,9 @@ class StatTracker
     team_goals.each do |team_goal, value|
       team_averages[team_goal] = (value.sum / value.length.to_f)
     end
-    min = team_averages.min_by { |k,v| v }
-    name(min)
-  end
-
-  ## Takes in a team id and returns team name
-  def name(found_id)
-    found_team = @teams.find { |team| team.team_id == found_id.first }
-    found_team.team_name
+    min_id = team_averages.min_by { |k,v| v }.first
+    #binding.pry
+    name(min_id)
   end
   
   def team_games_league_total
