@@ -172,12 +172,12 @@ class StatTracker
 
   def worst_coach(season) 
     season_comparer = season[0..3]
-    losing_games_in_season = @game_teams.find_all do |game_team| 
+    winning_games_in_season = @game_teams.find_all do |game_team| 
       game_id_comparer = game_team.game_id[0..3]
       game_team.result == "WIN" && season_comparer == game_id_comparer
     end
     coach_count = {}
-    losing_games_in_season.each do |game|
+    winning_games_in_season.each do |game|
       if coach_count[game.head_coach].nil? 
         coach_count[game.head_coach] = 1
       else 
